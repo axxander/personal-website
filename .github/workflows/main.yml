@@ -2,10 +2,10 @@ on:
   push:
     branches:
       - main
-    paths:
-      - '*'
-      - '!README.md'
-      - '!main.yml'
+    # paths:
+    #   - '*'
+    #   - '!README.md'
+    #   - '!main.yml'
 
 jobs:
   test:
@@ -50,9 +50,9 @@ jobs:
 
       - name: Deploy
       - run: >
-        gcloud run deploy
-        --image gcr.io/$PROJECT_ID/$SERVICE_NAME:$GITHUB_SHA
-        --port 8080
-        --platform managed
-        --region europe-west1
-        --allow-unauthenticated
+          gcloud run deploy
+          --image gcr.io/$PROJECT_ID/$SERVICE_NAME:$GITHUB_SHA
+          --port 8080
+          --platform managed
+          --region europe-west1
+          --allow-unauthenticated
