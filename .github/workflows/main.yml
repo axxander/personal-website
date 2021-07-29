@@ -48,7 +48,7 @@ jobs:
           service_name: ${{ secrets.GCP_SERVICE_NAME }}
 
       - name: Build
-        run: gcloud build --tag gcr.io/$PROJECT_ID/$SERVICE_NAME:$GITHUB_SHA
+        run: gcloud builds --tag gcr.io/$PROJECT_ID/$SERVICE_NAME:$GITHUB_SHA
 
       - name: Deploy
         run: >
