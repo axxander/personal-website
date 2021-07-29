@@ -2,6 +2,10 @@ on:
   push:
     branches:
       - main
+    paths:
+      - '*'
+      - '!README.md'
+      - '!main.yml'
 
 jobs:
   test:
@@ -12,10 +16,43 @@ jobs:
         node-version: [14.x]
 
     steps:
+      - name: Checkout
       - uses: actions/checkout@v2
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      - run: npm i
+
+      - run: npm ci
       - run: npm test
+
+  build-deploy:
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+      - uses: actions/checkout@v2
+
+      # Setup the cloud SDK using community built action
+      - name: Setup Cloud SDK
+      - uses: google-github-actions/setup-gcloud@v0.2.0
+        # Sets environment variables
+        with:
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+          service_account_key: ${{ secrets.GCP_CREDENTIALS }}
+          service_account_email: ${{ secrets.GCP_EMAIL }}
+          service_name: ${{ secrets.GCP_SERVICE_NAME }}
+
+      - name: Build
+        run: gcloud build --tag gcr.io/$PROJECT_ID/$SERVICE_NAME:$GITHUB_SHA
+
+      - name: Deploy
+      - run: >
+        gcloud run deploy
+        --image gcr.io/$PROJECT_ID/$SERVICE_NAME:$GITHUB_SHA
+        --port 8080
+        --platform managed
+        --region europe-west1
+        --allow-unauthenticated
