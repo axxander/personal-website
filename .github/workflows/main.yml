@@ -32,11 +32,6 @@ jobs:
   build-deploy:
     needs: test
     runs-on: ubuntu-latest
-    env:
-      PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
-      SERVICE_ACCOUNT_KEY: ${{ secrets.GCP_CREDENTIALS }}
-      SERVICE_ACCOUNT_EMAIL: ${{ secrets.GCP_EMAIL }}
-      SERVICE_NAME: ${{ secrets.GCP_SERVICE_NAME }}
 
     steps:
       - name: Checkout
@@ -47,17 +42,17 @@ jobs:
         uses: google-github-actions/setup-gcloud@v0.2.0
         # Sets environment variables
         with:
-          project_id: env.PROJECT_ID
-          service_account_key: env.SERVICE_ACCOUNT_KEY
-          service_account_email: env.SERVICE_ACCOUNT_EMAIL
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+          service_account_key: ${{ secrets.GCP_CREDENTIALS }}
+          service_account_email: ${{ secrets.GCP_EMAIL }}
 
       - name: Build
-        run: gcloud builds submit --tag gcr.io/env.PROJECT_ID/env.SERVICE_NAME:$GITHUB_SHA
+        run: gcloud builds submit --tag gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_SERVICE_NAME }}:$GITHUB_SHA
 
       - name: Deploy
         run: >
           gcloud run deploy
-          --image gcr.io/env.PROJECT_ID/env.SERVICE_NAME:$GITHUB_SHA
+          --image gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_SERVICE_NAME }}:$GITHUB_SHA
           --port 8080
           --platform managed
           --region europe-west1
