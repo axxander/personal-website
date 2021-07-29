@@ -1,3 +1,5 @@
+![testing workflow](https://github.com/axxander/personal-website/actions/workflows/main.yml/badge.svg)
+
 ## Personal Wesbite
 
 ### Intentions for this project
