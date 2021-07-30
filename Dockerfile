@@ -4,6 +4,8 @@ WORKDIR /app
 
 COPY package*.json ./
 
+RUN npm i --only=prod
+
 COPY . ./
 
 # ENV PORT 8080
