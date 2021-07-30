@@ -5,7 +5,7 @@ const app = express();
 app.use(express.json());
 
 app.get('/', (req, res) => {
-  res.json({ status: 'hello meg' });
+  res.json({ status: 'hello leigh' });
 });
 
 // 404 for all other routes
