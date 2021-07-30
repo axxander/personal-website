@@ -6,7 +6,7 @@ COPY package*.json ./
 
 COPY . ./
 
-ENV PORT 3000
+ENV PORT 8080
 
 EXPOSE ${PORT}
 
