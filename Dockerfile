@@ -6,8 +6,7 @@ COPY package*.json ./
 
 COPY . ./
 
-ENV PORT 8080
-
-EXPOSE ${PORT}
+# ENV PORT 8080
+# EXPOSE ${PORT}
 
 CMD ["npm", "start"]
