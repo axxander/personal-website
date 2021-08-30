@@ -6,11 +6,12 @@
 
 ### Overview
 
-- I used this project to learn about:
-  - Continuous integration and continuous deployment using GitHub workflows
-  - Docker
-  - GCP Cloud Run
-  - Automated testing using Jest and Supertest for Express applications
+I used this project to learn about:
+
+- Continuous integration and continuous deployment using GitHub workflows
+- Docker
+- GCP Cloud Run
+- Automated testing using Jest and Supertest for Express applications
 
 ### Future
 
