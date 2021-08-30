@@ -2,7 +2,7 @@
 
 ## DevOps/Personal Wesbite
 
-[Click Here](alexgregory.co 'Live Project')
+[Click Here](https://alexgregory.co 'Live Project')
 
 ### Overview
 
