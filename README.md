@@ -2,7 +2,7 @@
 
 ## DevOps/Personal Wesbite
 
-![Click Here](alexgregory.co 'Live Project')
+[Click Here](alexgregory.co 'Live Project')
 
 ### Overview
 
@@ -11,7 +11,9 @@
   - Docker
   - GCP Cloud Run
   - Automated testing using Jest and Supertest for Express applications
-- In the future this project will server as my personal website
-- I intend to:
-  - Write more specific workflows for developing off the main branch & handling pull requests
-  - Use a frontend framework (likely React) to improve frontend skills beyond vanilla JS
+
+### Future
+
+- Build personal website using this as the server
+- Write more specific workflows for developing off the main branch & handling pull requests
+- Use a frontend framework (likely React) to improve frontend skills beyond vanilla JS
